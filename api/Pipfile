@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "==1.1.4"
+markupsafe = "==2.0.1"
+requests = "==2.25.1"
+python-dotenv = "==0.15.0"
+flask-cors = "==3.0.10"
+pymongo = "==3.11.3"
+
+[dev-packages]
+black = "==22.6.0"
+pylint = "==2.14.4"
+pycodestyle = "==2.6.0"
+
+[requires]
+python_version = "3.7"
