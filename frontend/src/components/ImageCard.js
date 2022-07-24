@@ -4,11 +4,11 @@ import { Card, Button } from 'react-bootstrap';
 const ImageCard = ({ image, deleteImage, saveImage }) => {
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={image.urls.small} />
+      <Card.Img variant="top" src={image.image_url} />
       {/* <Card.Img variant="top" src={image} /> */}
       <Card.Body>
         <Card.Title>{image.title?.toUpperCase()}</Card.Title>
-        <Card.Text>{image.description || image.alt_description}</Card.Text>
+        <Card.Text>{image.citation[0].title || ''}</Card.Text>
         <Button variant="primary" onClick={() => deleteImage(image.id)}>
           Delete
         </Button>{' '}

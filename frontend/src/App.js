@@ -7,13 +7,11 @@ import ImageCard from './components/ImageCard';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5051';
+const IMAGE_URL = 'https://cdn.rcsb.org/images/structures';
 
 function App() {
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
-  // const RCSB_URL =
-  //   'https://cdn.rcsb.org/images/structures/tq/7tqz/7tqz_chain-A.jpeg';
-
   useEffect(() => {
     async function getSavedImages() {
       try {
@@ -34,11 +32,22 @@ function App() {
 
     try {
       const res = await axios.get(`${API_URL}/new-image?query=${word}`);
-      // console.log('getting image from RCSB');
-      // const res = await axios.get(`${RCSB_URL}`);
-      // console.log(res.data);
       console.log('adding found image to the state');
-      setImages([{ ...res.data, title: word }, ...images]);
+
+      //  Form protein image URL (image_URL/prefix_word/lower_word/lower_word'_chain-A.jpeg')
+
+      var chop_word = word.slice(1, 3);
+      var prefix_word = chop_word.toLowerCase();
+      var lower_word = word.toLowerCase();
+      setImages([
+        {
+          ...res.data,
+          image_url: `${IMAGE_URL}/${prefix_word}/${lower_word}/${lower_word}_chain-A.jpeg`,
+          title: word,
+          id: word,
+        },
+        ...images,
+      ]);
     } catch (error) {
       console.log(error);
     }
@@ -48,12 +57,12 @@ function App() {
   };
 
   const handleDeleteImage = async (id) => {
-    id.preventDefault();
     console.log('sending delete request');
+    console.log(id);
     try {
       const res = await axios.delete(`${API_URL}/images/${id}`);
       if (res.data?.deleted_id) {
-        setImages(images.filter((image) => image.id !== id));
+        setImages(images.filter((image) => image.title !== id));
       }
     } catch (error) {
       console.log(error);
@@ -61,7 +70,7 @@ function App() {
   };
 
   const handleSaveImage = async (id) => {
-    const imageToBeSaved = images.find((image) => image.id === id);
+    const imageToBeSaved = images.find((image) => image.title === id);
     imageToBeSaved.saved = true;
 
     try {
@@ -80,7 +89,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="Images Gallery" />
+      <Header title="Protein Gallery" />
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit} />
       <Container className="mt-4">
         <Row xs={1} md={2} lg={3}>
