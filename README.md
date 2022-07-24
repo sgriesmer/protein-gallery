@@ -53,15 +53,15 @@ Deploy the Docker containers with the command:
 
     (a) Frontend application
 
-    ![frontend app] (frontend/src/images/frontend.png)
+    ![frontend app] (./frontend/src/images/frontend.png)
 
     (b) API application
 
-    ![api app] (frontend/src/images/api.png)
+    ![api app] (./frontend/src/images/api.png)
 
     (c) Mongo Express client view of Mongo database
 
-    ![Mongo Express app] (frontend/src/images/me.png)
+    ![Mongo Express app] (./frontend/src/images/me.png)
 
 # Additional features
 
