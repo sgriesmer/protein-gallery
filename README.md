@@ -4,7 +4,7 @@ The purpose of this project is to create a demonstration website using REACT, ja
 
 The architecture of the demonstration website is comprised of: (1) a frontend REACT/javascript application, (2) a RESTful API application written in Python, and (3) the Mongo database to store protein information:
 
-![test website architecture] (/frontend/src/images/arch.jpg)
+![test website architecture] (./frontend/src/images/arch.jpg)
 
 Note that the frontend application interacts with the RESTful API application, which pulls data from the RCSB Protein Database.  
 
@@ -53,7 +53,7 @@ Deploy the Docker containers with the command:
 
     (a) Frontend application
 
-    ![frontend app] (./frontend/src/images/frontend.png)
+    ![frontend app] (https://github.com/sgriesmer/protein-gallery/frontend/src/images/frontend.png)
 
     (b) API application
 
